@@ -1,0 +1,29 @@
+{
+  "header": {
+    "title": "Squelette Angular",
+    "links": {
+      "home": "Accueil",
+      "login": "Login"
+    },
+    "welcome": "Bonjour {{firstname}}"
+  },
+  "home": {
+    "title": "Ma première application Angular 4"
+  },
+  "login": {
+    "title": "Connexion",
+    "form": {
+      "placeholders": {
+        "email": "Email",
+        "password": "Mot de passe"
+      },
+      "errors": {
+        "required": "Ce champ est requis",
+        "email": "Format d'email invalide"
+      },
+      "actions": {
+        "submit": "Se connecter"
+      }
+    }
+  }
+}
