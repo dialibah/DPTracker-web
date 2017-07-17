@@ -5,7 +5,7 @@ import {SessionService, Credentials} from "../components/session/session.service
 import {Router} from "@angular/router";
 
 @Component({
-	selector: 'n9-login',
+	selector: 'dpt-login',
 	templateUrl: 'login.component.html',
 	//careful: we do not have sourcemaps when using styleUrls (yet)
 	styleUrls: ['login.component.scss']

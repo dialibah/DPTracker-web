@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-	selector: 'n9-home',
+	selector: 'dpt-home',
 	templateUrl: 'home.component.html'
 })
 export class HomeComponent {

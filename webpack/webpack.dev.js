@@ -107,9 +107,6 @@ module.exports = function (env, conf) {
 			new CopyWebpackPlugin([
 				{ context: app, from: "**/*.+(png|jpeg|jpg|gif|ico|svg)" }
 			]),
-			new CopyWebpackPlugin([
-				{ context: app, from: "translations", to: "translations" }
-			]),
 			new ProgressBarPlugin(),
 			new HotModuleReplacementPlugin(),
 			//prevent from importing lodash global module

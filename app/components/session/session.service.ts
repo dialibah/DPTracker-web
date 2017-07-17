@@ -59,7 +59,7 @@ export class SessionService {
 			headers: new Headers({ 'Content-Type': 'application/json' })
 		};
 
-		return this.http.post("/login", credentials, options)
+		return this.http.post("/user/login", credentials, options)
 			.map(res => res.json())
 			.catch(error => Observable.throw(error.json().error || 'Server error'))
 			.do(

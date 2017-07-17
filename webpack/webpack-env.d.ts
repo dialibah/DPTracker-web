@@ -5,7 +5,8 @@
 
 interface WebpackCustomEnv {
 	NODE_ENV?: string,
-	api?: string
+	api?: string,
+	baseHref?: string
 }
 
 interface WebpackProcess {

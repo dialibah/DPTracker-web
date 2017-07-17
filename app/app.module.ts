@@ -1,4 +1,4 @@
-import {NgModule, ValueProvider} from "@angular/core";
+import {NgModule, ValueProvider} from '@angular/core';
 import {AppComponent} from "./app.component";
 import {CoreModule} from "./components/core/core.module";
 import {HomeComponent} from "./home/home.component";
@@ -7,9 +7,7 @@ import {HeaderComponent} from "./header/header.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule, Http} from "@angular/http";
 import {FormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
-import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {APP_BASE_HREF, CommonModule } from '@angular/common';
 import {SharedModule} from "./components/shared/shared.module";
 
 const WINDOW_PROVIDER: ValueProvider = {
@@ -20,15 +18,13 @@ const WINDOW_PROVIDER: ValueProvider = {
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'login', loadChildren: './login/login.module#LoginModule' }
+	// { path: 'signup', loadChildren: './signup/signup.module#SignupModule' }
 ];
-
-export function createTranslateLoader(http: Http) {
-	return new TranslateHttpLoader(http, './translations/', '.json');
-}
 
 @NgModule({
 	providers: [
-		WINDOW_PROVIDER
+		WINDOW_PROVIDER,
+		{ provide: APP_BASE_HREF, useValue: process.env.baseHref }
 	],
 	imports: [
 		CommonModule,
@@ -37,14 +33,6 @@ export function createTranslateLoader(http: Http) {
 		HttpModule,
 		RouterModule.forRoot(routes),
 		BrowserModule,
-		TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: (createTranslateLoader),
-				deps: [Http]
-			}
-		}),
-
 		CoreModule,
 		SharedModule.forRoot()
 	],

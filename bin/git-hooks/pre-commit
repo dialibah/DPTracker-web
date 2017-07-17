@@ -1,8 +1,0 @@
-#!/bin/sh
-
-./node_modules/.bin/tslint 'app/**/*.ts'
-status=$?
-
-[ $status = 1 ] && echo "COMMIT CONTENT REJECTED" || echo "COMMIT CONTENT ACCEPTED"
-
-exit $status

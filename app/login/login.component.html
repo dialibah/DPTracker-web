@@ -1,18 +1,19 @@
 <div class="container text-center" id="login">
-	<h1>{{'login.title' | translate}}</h1>
+	<h1>Authentification</h1>
 	<div class="well col-xs-12 col-md-4 col-md-offset-4">
 		<form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" class="form form-horizontal">
 			<div class="form-group">
 				<div class="col-xs-12">
 					<input type="text" name="email" id="email" class="form-control" formControlName="email"
-						   placeholder="{{'login.form.placeholders.email' | translate}}" />
+						   placeholder="email" />
+
 					<div *ngIf="loginForm.controls.email.errors && loginForm.controls.email.dirty"
 						 class="alert alert-danger margin-top-xs-xs">
 						<div [hidden]="!loginForm.controls.email.errors.required">
-							{{'login.form.errors.required' | translate}}
+							Champ requis
 						</div>
 						<div [hidden]="!loginForm.controls.email.errors.n9Email">
-							{{'login.form.errors.email' | translate}}
+							Email non valide
 						</div>
 					</div>
 				</div>
@@ -20,13 +21,13 @@
 			<div class="form-group">
 				<div class="col-xs-12">
 					<input type="password" name="password" id="password" class="form-control" formControlName="password"
-						   placeholder="{{'login.form.placeholders.password' | translate}}" />
+						   placeholder="Mot de passe" />
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-xs-12">
 					<button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">
-						{{'login.form.actions.submit' | translate}}
+						Valider
 					</button>
 				</div>
 			</div>

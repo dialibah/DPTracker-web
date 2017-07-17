@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {SessionService, Profile, Session} from "../components/session/session.service";
 
 @Component({
-	selector: 'n9-header',
+	selector: 'dpt-header',
 	templateUrl: 'header.component.html'
 })
 export class HeaderComponent {

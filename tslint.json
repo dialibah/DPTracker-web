@@ -32,8 +32,8 @@
     "triple-equals": [true, "allow-undefined-check", "allow-null-check"],
 
 
-    "directive-selector": [true, "attribute", ["n9"], "camelCase"],
-    "component-selector": [true, "element", ["n9"], "kebab-case"],
+    "directive-selector": [true, "attribute", ["dpt"], "camelCase"],
+    "component-selector": [true, "element", ["dpt"], "kebab-case"],
 
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,

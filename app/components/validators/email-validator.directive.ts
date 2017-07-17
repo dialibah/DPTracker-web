@@ -3,7 +3,7 @@ import {FormControl, NG_VALIDATORS, Validator} from "@angular/forms";
 
 
 @Directive({
-	selector: '[n9-email][ngModel],[n9-email][formControl]',
+	selector: '[dpt-email][ngModel],[dpr-email][formControl]',
 	providers: [
 		{ provide: NG_VALIDATORS, useExisting: forwardRef(() => EmailValidatorDirective), multi: true }
 	]

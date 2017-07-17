@@ -2,23 +2,17 @@ import {Component} from "@angular/core";
 import {SessionService} from "./components/session/session.service";
 import {ConfigurationService} from "./components/conf/configuration.service";
 import {ApiHttpClient} from "./components/http/api-http-client.service";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-	selector: 'n9-app',
+	selector: 'dpt-app',
 	templateUrl: 'app.component.html'
 })
 export class AppComponent {
 	constructor(
-		private translateService: TranslateService,
 		private session: SessionService,
 		private conf: ConfigurationService,
 		private http: ApiHttpClient
 	) {
-		//i18n configuration
-		this.translateService.setDefaultLang("en-GB");
-		this.translateService.use("fr-FR");
-
 		//session configuration
 		this.session.load();
 
