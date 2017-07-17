@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 	//careful: we do not have sourcemaps when using styleUrls (yet)
 	styleUrls: ['login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
 	loginForm: FormGroup;
 
@@ -19,9 +19,6 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private session: SessionService
 	) {
-	}
-
-	ngOnInit(): void {
 		this.loginForm = this.fb.group({
 			'email': [
 				'', [

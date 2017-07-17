@@ -17,8 +17,8 @@ const WINDOW_PROVIDER: ValueProvider = {
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-	{ path: 'login', loadChildren: './login/login.module#LoginModule' }
-	// { path: 'signup', loadChildren: './signup/signup.module#SignupModule' }
+	{ path: 'login', loadChildren: './login/login.module#LoginModule' },
+	{ path: 'signup', loadChildren: './signup/signup.module#SignupModule' }
 ];
 
 @NgModule({
