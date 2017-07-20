@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "lite-server --baseDir='dist'",
-    "start": "webpack",
+    "build": "webpack",
     "watch": "webpack --watch",
     "tslint": "tslint 'app/**/*.ts' || true"
   },
