@@ -31,6 +31,12 @@ export interface Credentials {
 	password: string;
 }
 
+export interface SignupData {
+	email: string,
+	username: string,
+	password: string
+}
+
 @Injectable()
 export class SessionService {
 
@@ -69,6 +75,13 @@ export class SessionService {
 					return <Session>res;
 				}
 			);
+	}
+
+	createUser(signupData: SignupData){
+		this.closeSession();
+		return this.http.post("/user/signup", signupData)
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
 	}
 
 	logout() {
