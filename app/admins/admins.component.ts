@@ -31,10 +31,4 @@ export class AdminsComponent implements OnInit{
 	deActivate(userEmail:string) {
 		console.log(userEmail);
 	}
-
-
-
-
-
-
 }

@@ -3,7 +3,7 @@
   "description": "UI of dialibah import export backoffice",
   "version": "0.0.1",
   "scripts": {
-    "dev": "lite-server --baseDir='dist'",
+    "dev": "webpack-dev-server --progress --port 8080",
     "build": "webpack",
     "watch": "webpack --watch",
     "tslint": "tslint 'app/**/*.ts' || true"
