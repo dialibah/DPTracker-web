@@ -1,45 +1,44 @@
 'use strict';
 
 module.exports = function (env, conf) {
-	const HtmlWebpackPlugin = require('html-webpack-plugin');
 	const deepExtend = require('deep-extend');
+	const HtmlWebpackPlugin = require('html-webpack-plugin');
 	const path = require('path');
 	const webpack = require('webpack');
 	const DefinePlugin = require('webpack/lib/DefinePlugin');
+	const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
 	const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+	const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 	const CopyWebpackPlugin = require('copy-webpack-plugin');
 	const ExtractTextPlugin = require('extract-text-webpack-plugin');
 	const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-	const IgnorePlugin = require('webpack/lib/IgnorePlugin');
-	const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
-	const extractRootCss = new ExtractTextPlugin("styles.css");
+	const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+	const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 	const rootDir = path.resolve(__dirname, '..');
 	const app = 'app';
 	const dist = 'dist';
 
 	return {
-		debug: false,
-		devtool: 'source-map',
+		devtool: 'eval-source-map',
 		entry: {
 			app: [path.resolve(rootDir, app, 'main')],
 			vendor: [path.resolve(rootDir, app, 'vendor')],
-			css: [ path.resolve(rootDir, app, 'app.module.scss')]
+			css: [path.resolve(rootDir, app, 'app.module.scss')]
 		},
 		module: {
-			preLoaders: [
+			rules: [
 				{
 					test: /\.ts$/,
+					enforce: 'pre',
 					loader: 'tslint-loader'
-				}
-			],
-			loaders: [
+				},
 				{
-					loader: 'raw',
+					loader: 'raw-loader',
 					test: /\.(css|html)$/
 				},
 				{
-					loaders: [
+					use: [
 						'awesome-typescript-loader',
 						'angular2-template-loader',
 						'angular2-router-loader'
@@ -49,7 +48,7 @@ module.exports = function (env, conf) {
 				},
 				{
 					test: /\.scss$/,
-					loaders: [
+					use: [
 						'raw-loader',
 						'sass-loader?sourceMap'
 					],
@@ -57,7 +56,12 @@ module.exports = function (env, conf) {
 				},
 				{
 					test: /app\.module\.scss$/,
-					loader: extractRootCss.extract('css?sourceMap!sass?sourceMap')
+					use: ExtractTextPlugin.extract({
+						use: [
+							'css-loader?sourceMap',
+							'sass-loader?sourceMap'
+						]
+					})
 				},
 				{
 					test: /\.(png|jpe?g|gif|ico|svg)$/,
@@ -87,7 +91,8 @@ module.exports = function (env, conf) {
 		},
 		output: {
 			filename: '[name].bundle.js',
-			path: path.resolve(rootDir, dist)
+			path: path.resolve(rootDir, dist),
+			publicPath: !!conf.env.baseUrl ? conf.env.baseUrl : undefined
 		},
 		plugins: [
 			new CommonsChunkPlugin({
@@ -100,26 +105,38 @@ module.exports = function (env, conf) {
 				inject: 'body',
 				template: path.resolve(rootDir, app, 'index.html')
 			}),
-			extractRootCss,
+			new ExtractTextPlugin({
+				filename: "styles.css",
+				disable: false,
+				allChunks: true
+			}),
+			new LoaderOptionsPlugin({
+				debug: false
+			}),
+			new ContextReplacementPlugin(
+				/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+				__dirname
+			),
 			new DefinePlugin({
-				'process.env': JSON.stringify(conf.env || {})
+				'process.env': JSON.stringify(conf.env || {})
 			}),
 			new CopyWebpackPlugin([
-				{ context: app, from: "**/*.+(png|jpeg|jpg|gif|ico|svg)" }
+				{context: app, from: "**/*.+(png|jpeg|jpg|gif|ico|svg)"}
 			]),
 			new ProgressBarPlugin(),
 			new HotModuleReplacementPlugin(),
+			//ignore moment locales
+			new IgnorePlugin(/^\.\/locale$/, /moment$/),
+			//prevent from importing primeng global module
+			new IgnorePlugin(/^primeng\/primeng$/),
 			//prevent from importing lodash global module
 			new IgnorePlugin(/^lodash$/),
 			//prevent from importing rxjs global module
 			new IgnorePlugin(/^rxjs$/)
 		],
 		resolve: {
-			extensions: ['', '.js', '.ts']
+			extensions: ['.js', '.ts', '.scss']
 		},
-		/**
-		 * merge with conf from env files
-		* */
 		devServer: deepExtend(
 			{},
 			{
@@ -127,11 +144,7 @@ module.exports = function (env, conf) {
 				noInfo: true,
 				historyApiFallback: true
 			},
-			conf.webpackDevServer || {}
-		),
-		ts: {
-			logLevel: 'warn'
-		}
+			conf.webpackDevServer || {}
+		)
 	};
 };
-

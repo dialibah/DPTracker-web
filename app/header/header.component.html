@@ -4,6 +4,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" *ngIf="profile">
 				<li><a routerLink="/">Tableau de bord</a></li>
+				<li><a routerLink="/admins">Gérer administrateurs</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right" *ngIf="!profile">
 				<li><a routerLink="/login">S'authentifier</a></li>
@@ -11,7 +12,10 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right" *ngIf="profile">
 				<li>
-					<span class="navbar-text">Bienvenue todo,</span>
+					<span class="navbar-text">Bienvenue {{profile.username}}</span>
+				</li>
+				<li>
+					<span class="navbar-text" (click)="logout()" style="cursor: pointer">Deconnecter</span>
 				</li>
 			</ul>
 		</div>

@@ -18,12 +18,12 @@ export interface Profile {
 	firstname: string;
 	lastname: string;
 	email: string;
-	address: Address;
+	username: string;
+	token: string;
+	active:boolean;
 }
 
-export interface Session {
-	token: string;
-	profile: Profile;
+export interface Session extends Profile{
 }
 
 export interface Credentials {
@@ -32,9 +32,9 @@ export interface Credentials {
 }
 
 export interface SignupData {
-	email: string,
-	username: string,
-	password: string
+	email: string;
+	username: string;
+	password: string;
 }
 
 @Injectable()
@@ -87,6 +87,12 @@ export class SessionService {
 	logout() {
 		this.closeSession();
 		(<Subject<any>>this.logout$).next();
+	}
+
+	getAllUsers():Observable<Profile[]>{
+		return this.http.get("/user")
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
 	}
 
 	private openSession(session: Session) {

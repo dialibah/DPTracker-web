@@ -1,7 +1,6 @@
 import {NgModule, ModuleWithProviders} from "@angular/core";
 import {EmailValidatorDirective} from "../validators/email-validator.directive";
 import {ReactiveFormsModule} from "@angular/forms";
-import { TranslateModule } from "@ngx-translate/core";
 
 /*
 * Here put all the shared directives, components and pipe
@@ -9,15 +8,13 @@ import { TranslateModule } from "@ngx-translate/core";
 * */
 @NgModule({
 	imports: [
-		ReactiveFormsModule,
-		TranslateModule
+		ReactiveFormsModule
 	],
 	declarations: [
 		EmailValidatorDirective
 	],
 	exports: [
 		ReactiveFormsModule,
-		TranslateModule,
 		EmailValidatorDirective
 	]
 })

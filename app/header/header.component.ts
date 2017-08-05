@@ -8,10 +8,10 @@ import {SessionService, Profile, Session} from "../components/session/session.se
 export class HeaderComponent {
 	profile: Profile;
 	constructor(private session: SessionService) {
-		this.session.session$.subscribe(s => this.onProfileChange(s));
+		this.session.session$.subscribe(s => this.profile = s);
 	}
 
-	onProfileChange(session: Session) {
-		this.profile = session ? session.profile : null;
+	logout(){
+		this.session.logout();
 	}
 }

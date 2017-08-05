@@ -1,0 +1,19 @@
+<div class="container">
+	<table class="table">
+		<tr>
+			<th> Nom </th>
+			<th> Email </th>
+			<th> Username </th>
+			<th> </th>
+		</tr>
+		<tr *ngFor="let user of users">
+			<td> {{user.firstname}} {{user.lastname}} </td>
+			<td> {{user.email}} </td>
+			<td> {{user.username}} </td>
+			<td>
+				<button class="btn btn-primary" *ngIf="!user.active" (click)="activate(user.email)">Activer</button>
+				<button class="btn btn-danger" *ngIf="user.active" (click)="deActivate(user.email)">Desactiver</button>
+			</td>
+		</tr>
+	</table>
+</div>
