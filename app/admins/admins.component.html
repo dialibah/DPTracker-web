@@ -11,8 +11,8 @@
 			<td> {{user.email}} </td>
 			<td> {{user.username}} </td>
 			<td>
-				<button class="btn btn-primary" *ngIf="!user.active" (click)="activate(user.email)">Activer</button>
-				<button class="btn btn-danger" *ngIf="user.active" (click)="deActivate(user.email)">Desactiver</button>
+				<button class="btn btn-primary" *ngIf="!user.active" (click)="activate(user.id)">Activer</button>
+				<button class="btn btn-danger" *ngIf="user.active" (click)="deActivate(user.id)">Desactiver</button>
 			</td>
 		</tr>
 	</table>

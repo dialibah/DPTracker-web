@@ -24,11 +24,12 @@ export class AdminsComponent implements OnInit{
 		this.session.getAllUsers().subscribe(allUsers => this.users = allUsers);
 	}
 
-	activate(userEmail:string) {
-		console.log(userEmail);
+	activate(id:string) {
+		this.session.updateUser(id, {active:true}).subscribe(res => console.log(res));
 	}
 
-	deActivate(userEmail:string) {
-		console.log(userEmail);
+	deActivate(id:string) {
+		this.session.updateUser(id, {active:false}).subscribe(res => console.log(res));
+
 	}
 }
