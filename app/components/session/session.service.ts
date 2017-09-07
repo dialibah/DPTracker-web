@@ -15,6 +15,7 @@ export interface Address {
 }
 
 export interface Profile {
+	id: string;
 	firstname: string;
 	lastname: string;
 	email: string;
@@ -91,6 +92,12 @@ export class SessionService {
 
 	getAllUsers():Observable<Profile[]>{
 		return this.http.get("/user")
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
+	}
+
+	updateUser(id:string, patch:any){
+		return this.http.patch(`/user/${id}`, patch )
 			.map(res => res.json())
 			.catch(error => Observable.throw('Server Error'));
 	}
