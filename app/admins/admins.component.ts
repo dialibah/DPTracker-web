@@ -1,11 +1,10 @@
 /**
- * Created by nureynisow on 05/08/2017.
- */
+	* Created by nureynisow on 05/08/2017.
+	* for DPTracker
+	*/
 
 import {Component, OnInit} from "@angular/core";
 import {Profile, Session, SessionService} from "../components/session/session.service";
-
-import swal from 'sweetalert2';
 
 @Component({
 	selector: 'dpt-admin',
@@ -24,12 +23,7 @@ export class AdminsComponent implements OnInit{
 		this.session.getAllUsers().subscribe(allUsers => this.users = allUsers);
 	}
 
-	activate(id:string) {
-		this.session.updateUser(id, {active:true}).subscribe(res => console.log(res));
-	}
-
-	deActivate(id:string) {
-		this.session.updateUser(id, {active:false}).subscribe(res => console.log(res));
-
+	activateToggle(id:string) {
+		this.session.activateUser(id).subscribe(res => this.session.getAllUsers().subscribe(allUsers => this.users = allUsers));
 	}
 }
