@@ -113,4 +113,10 @@ export class SessionService {
 		(<BehaviorSubject<Session>>this.session$).next(null);
 		this.http.deleteDefaultHeader(ApiHttpClient.AUTHORIZATION_HEADER);
 	}
+
+	activateUser(id: string):Observable<Profile> {
+		return this.http.patch(`/user/${id}/activateToggle`, {})
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
+	}
 }
