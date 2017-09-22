@@ -19,7 +19,7 @@ const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'admins', loadChildren: './admins/admins.module#AdminsModule'},
 	{ path: 'login', loadChildren: './login/login.module#LoginModule' },
-	{ path: 'chargement', loadChildren: './chargement/chargement.module#ChargementModule' },
+	{ path: 'chargements', loadChildren: './chargements/chargements.module#ChargementsModule' },
 	{ path: 'signup', loadChildren: './signup/signup.module#SignupModule' }
 ];
 
