@@ -1,12 +1,14 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
-import {ChargementComponent} from "./chargement.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ChargementService} from "./chargement.service";
+import {ChargementService} from "./chargements.service";
+import {ChargementComponent} from "./chargement/chargement.component";
+import {ChargementsComponent} from "./chargements.component";
 
 const routes: Routes = [
-	{ path: '', component: ChargementComponent }
+	{ path: '', component: ChargementsComponent },
+	{ path: ':id', component: ChargementComponent }
 ];
 
 @NgModule({
@@ -16,9 +18,9 @@ const routes: Routes = [
 		RouterModule.forChild(routes),
 		CommonModule
 	],
-	declarations: [ChargementComponent],
+	declarations: [ChargementsComponent, ChargementComponent],
 	providers: [ChargementService]
 })
-export class ChargementModule {
+export class ChargementsModule {
 
 }
