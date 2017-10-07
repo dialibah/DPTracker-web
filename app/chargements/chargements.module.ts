@@ -8,8 +8,7 @@ import {ChargementsComponent} from "./chargements.component";
 
 const routes: Routes = [
 	{ path: '', component: ChargementsComponent },
-	{ path: ':id', component: ChargementComponent },
-	{ path: ':id/colis', loadChildren: './chargement/colis/colis.module#ColisModule'}
+	{ path: ':id', component: ChargementComponent }
 ];
 
 @NgModule({

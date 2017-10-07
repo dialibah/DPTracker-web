@@ -9,10 +9,27 @@ export class ChargementService {
 	constructor(private http: ApiHttpClient){
 	}
 
-	createChargement():Observable<Chargement>{
-		return this.http.post('/chargements',{})
+	createChargement(createdBy:string):Observable<Chargement>{
+		return this.http.post('/chargements',{createdBy})
 			.map(res => res.json())
 			.catch(error => Observable.throw('Server Error'));
 	}
 
+	getAllChargements():Observable<Chargement[]> {
+		return this.http.get('/chargements')
+			.map(res => res.json())
+			.catch(err => Observable.throw('Server Error'));
+	}
+
+	addColis(guid: string, createdBy:string) {
+		return this.http.post(`/chargements/${guid}/colis`, {createdBy})
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
+	}
+
+	getChargement(chargementId: string):Observable<Chargement> {
+		return this.http.get(`/chargements/${chargementId}`)
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
+	}
 }
