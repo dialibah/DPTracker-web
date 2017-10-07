@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Subject} from "rxjs/Subject";
 import {ApiHttpClient} from "../http/api-http-client.service";
+import {Router} from "@angular/router";
 
 export interface Address {
 	line: string;
@@ -50,6 +51,7 @@ export class SessionService {
 
 	constructor(
 		private store: StoreService,
+		private router: Router,
 		private http: ApiHttpClient
 	) {
 	}
@@ -88,6 +90,7 @@ export class SessionService {
 	logout() {
 		this.closeSession();
 		(<Subject<any>>this.logout$).next();
+		this.router.navigate(['']);
 	}
 
 	getAllUsers():Observable<Profile[]>{
