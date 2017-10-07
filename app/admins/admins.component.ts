@@ -20,7 +20,7 @@ export class AdminsComponent implements OnInit{
 
 	ngOnInit(): void {
 		this.session.session$.subscribe(s => this.profile = s);
-		this.session.getAllUsers().subscribe(allUsers => this.users = allUsers);
+		this.session.getAllUsers().subscribe(allUsers => this.users = allUsers, e=> this.session.logout());
 	}
 
 	activateToggle(id:string) {
