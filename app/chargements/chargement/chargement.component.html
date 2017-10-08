@@ -5,7 +5,9 @@
 	TODO formulaire pour editer infos chargement
 
 	<h1>Colis</h1>
-	<button class="btn btn-primary pull-right" (click)="addColis()"> Ajouter un colis</button>
+	<button class="btn btn-primary pull-right" (click)="addColis()">
+		<i class="fa fa-plus" aria-hidden="true"></i> Ajouter un colis
+	</button>
 	<table *ngIf="chargement.colis" class="table table-striped table-hover margin-top-sm-xs">
 		<thead>
 		<tr>

@@ -4,8 +4,16 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" *ngIf="profile">
 				<li><a routerLink="/">Tableau de bord</a></li>
-				<li><a routerLink="/admins">Gérer administrateurs</a></li>
-				<li><a routerLink="/chargements">Chargements</a></li>
+				<li>
+					<a routerLink="/admins">
+						<i class="fa fa-user-secret" aria-hidden="true"></i> Gérer administrateurs
+					</a>
+				</li>
+				<li>
+					<a routerLink="/chargements">
+						<i class="fa fa-gift" aria-hidden="true"></i>Chargements
+					</a>
+				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right" *ngIf="!profile">
 				<li><a routerLink="/login">S'authentifier</a></li>
