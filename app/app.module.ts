@@ -20,6 +20,7 @@ const routes: Routes = [
 	{ path: 'admins', loadChildren: './admins/admins.module#AdminsModule'},
 	{ path: 'login', loadChildren: './login/login.module#LoginModule' },
 	{ path: 'chargements', loadChildren: './chargements/chargements.module#ChargementsModule' },
+	{ path: 'colis', loadChildren: './colis/colis.module#ColisModule' },
 	{ path: 'signup', loadChildren: './signup/signup.module#SignupModule' }
 ];
 

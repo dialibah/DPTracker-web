@@ -31,3 +31,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 // Override Bootstrap
 @import 'components/scss/bootstrap/bootstrap';
 
+.clickable{
+	cursor: pointer;
+}
+

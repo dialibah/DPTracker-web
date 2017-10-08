@@ -1,18 +1,13 @@
 import {NgModule} from "@angular/core";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterModule, Routes} from "@angular/router";
+import {Routes, RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
-import {ChargementService} from "../../chargements.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ChargementService} from "../chargements/chargements.service";
 import {ColisComponent} from "./colis.component";
-/**
- * Created by nureynisow on 24/09/2017.
- */
 
-
-const routes:Routes = [
-	{ path: '', component: ColisComponent}
+const routes: Routes = [
+	{ path: ':chargementId/:colisId', component: ColisComponent }
 ];
-
 
 @NgModule({
 	imports: [

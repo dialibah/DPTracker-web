@@ -1,5 +1,31 @@
-<div class="text-bold text-center">Détails du chargement <span class="text-grey4-xs">{{guid.toUpperCase()}}</span></div>
-TODO formulaire pour editer infos chargement
+<div class="container" *ngIf="chargement && chargement.guid">
+	<div class="text-bold text-center">
+		Détails du chargement <span class="text-grey4-xs">{{chargement.guid.toUpperCase()}}</span>
+	</div>
+	TODO formulaire pour editer infos chargement
 
-<h1>Colis</h1>
-TODO Liste colis dans le chargement
+	<h1>Colis</h1>
+	<button class="btn btn-primary pull-right" (click)="addColis()"> Ajouter un colis</button>
+	<table *ngIf="chargement.colis" class="table table-striped table-hover margin-top-sm-xs">
+		<thead>
+		<tr>
+			<th>GUID</th>
+			<th>Créé par</th>
+			<th>Type de colis</th>
+			<th>Poids</th>
+			<th>Destinataire</th>
+			<th>expediteur</th>
+		</tr>
+		</thead>
+		<tbody class="clickable">
+		<tr *ngFor="let colis of chargement.colis" (click)="openColis(chargement.guid)">
+			<td>{{colis.guid}}</td>
+			<td>{{colis.createdBy}}</td>
+			<td>{{colis.typeColis}}</td>
+			<td>{{colis.poids}}</td>
+			<td>{{colis.destinataire}}</td>
+			<td>{{colis.expediteur}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
