@@ -7,6 +7,7 @@ import {SessionService, Profile, Session} from "../components/session/session.se
 })
 export class HeaderComponent {
 	profile: Profile;
+	isCollapsed: boolean = true;
 	constructor(private session: SessionService) {
 		this.session.session$.subscribe(s => this.profile = s);
 	}

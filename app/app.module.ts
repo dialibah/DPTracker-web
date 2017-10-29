@@ -9,6 +9,7 @@ import {HttpModule, Http} from "@angular/http";
 import {FormsModule} from "@angular/forms";
 import {APP_BASE_HREF, CommonModule } from '@angular/common';
 import {SharedModule} from "./components/shared/shared.module";
+import {CollapseDirective} from "ng2-bootstrap";
 
 const WINDOW_PROVIDER: ValueProvider = {
 	provide: Window,
@@ -42,7 +43,8 @@ const routes: Routes = [
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		HomeComponent
+		HomeComponent,
+		CollapseDirective
 	],
 	bootstrap: [AppComponent]
 })

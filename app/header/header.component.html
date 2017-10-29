@@ -1,7 +1,27 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-		<div class="navbar-header"><a class="navbar-brand">DPT</a></div>
-		<div class="navbar-collapse collapse">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">DPT</a>
+		</div>
+		<div class="navbar-collapse collapse" id="menu" [collapse]="isCollapsed">
+			<ul class="nav navbar-nav navbar-right" *ngIf="!profile">
+				<li><a routerLink="/login">S'authentifier</a></li>
+				<li><a routerLink="/signup">S'enregistrer</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" *ngIf="profile">
+				<li class="text-bold margin-xs-xs">
+					<span class="navbar-text"> Bienvenue {{profile.username}}</span>
+				</li>
+				<li class="text-bold margin-xs-xs">
+					<span class="navbar-text" (click)="logout()" style="cursor: pointer"><i class="fa fa-power-off" aria-hidden="true"></i> Deconnecter</span>
+				</li>
+			</ul>
 			<ul class="nav navbar-nav" *ngIf="profile">
 				<li><a routerLink="/">Tableau de bord</a></li>
 				<li>
@@ -11,20 +31,8 @@
 				</li>
 				<li>
 					<a routerLink="/chargements">
-						<i class="fa fa-gift" aria-hidden="true"></i>Chargements
+						<i class="fa fa-gift" aria-hidden="true"></i> Chargements
 					</a>
-				</li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right" *ngIf="!profile">
-				<li><a routerLink="/login">S'authentifier</a></li>
-				<li><a routerLink="/signup">S'enregistrer</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right" *ngIf="profile">
-				<li>
-					<span class="navbar-text">Bienvenue {{profile.username}}</span>
-				</li>
-				<li>
-					<span class="navbar-text" (click)="logout()" style="cursor: pointer">Deconnecter</span>
 				</li>
 			</ul>
 		</div>
