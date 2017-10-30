@@ -51,7 +51,7 @@
 		</tr>
 		</thead>
 		<tbody class="clickable">
-		<tr *ngFor="let colis of chargement.colis" (click)="openColis(chargement.guid)">
+		<tr *ngFor="let colis of chargement.colis" (click)="openColis(colis.guid)">
 			<td>{{colis.guid}}</td>
 			<td>{{colis.createdBy}}</td>
 			<td>{{colis.typeColis}}</td>

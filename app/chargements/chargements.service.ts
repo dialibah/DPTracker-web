@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {ApiHttpClient} from "../components/http/api-http-client.service";
 import {Observable} from "rxjs/Observable";
-import {Chargement} from "./chargements.modele";
+import { Chargement, Colis } from './chargements.modele';
 
 @Injectable()
 export class ChargementService {
@@ -35,6 +35,12 @@ export class ChargementService {
 
 	updateChargement(guid: string, chargement: Chargement):Observable<Chargement> {
 		return this.http.put(`/chargements/${guid}`, chargement)
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
+	}
+
+	getColis ( chargement: string, colis: string): Observable<Colis> {
+		return this.http.get(`/chargements/${chargement}/colis/${colis}`)
 			.map(res => res.json())
 			.catch(error => Observable.throw('Server Error'));
 	}

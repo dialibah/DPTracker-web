@@ -52,10 +52,10 @@ export class ChargementComponent implements OnInit{
 
 	private buildForm(chargement: Chargement) {
 		return this.formBuilder.group({
-			description: ['', []],
-			leavingDate: ['', []],
-			arrivalDate: ['', []],
-			statutChargement: ['', []]
+			description: [chargement.description || '', []],
+			leavingDate: [chargement.leavingDate || '', []],
+			arrivalDate: [chargement.arrivalDate || '', []],
+			statutChargement: [chargement.statutChargement || '', []]
 		});
 	}
 
