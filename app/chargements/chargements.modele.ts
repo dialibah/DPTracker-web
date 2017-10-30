@@ -13,6 +13,7 @@ export interface Colis {
 
 export interface Chargement {
 	guid: string;
+	description: string;
 	createdBy: string;
 	leavingDate: Date;
 	arrivalDate: Date;

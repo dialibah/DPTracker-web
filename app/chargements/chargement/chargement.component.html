@@ -2,7 +2,38 @@
 	<div class="text-bold text-center">
 		Détails du chargement <span class="text-grey4-xs">{{chargement.guid.toUpperCase()}}</span>
 	</div>
-	TODO formulaire pour editer infos chargement
+	<form [formGroup]="chargementForm" novalidate class="text-center">
+		<div class="form-group">
+			<label> Description :
+				<input type="text" class="form-control" formControlName="description">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Date de départ :
+				<input type="date" class="form-control" formControlName="leavingDate">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Date d'arrivée :
+				<input type="date" class="form-control" formControlName="arrivalDate">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Statut de chargement :
+				<select formControlName="statutChargement">
+					<option value="CREATED">Créé</option>
+					<option value="OPEN">Ouvert</option>
+					<option value="CLOSED">Fermé</option>
+					<option value="UNDER_WAY">En route</option>
+					<option value="ARRIVED">Arrivé</option>
+					<option value="ARCHIVED">Archivé</option>
+				</select>
+			</label>
+		</div>
+		<button class="btn btn-primary" (click)="save()">
+			<i class="fa fa-save" aria-hidden="true"></i> Enregistrer
+		</button>
+	</form>
 
 	<h1>Colis</h1>
 	<button class="btn btn-primary pull-right" (click)="addColis()">

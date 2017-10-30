@@ -32,4 +32,10 @@ export class ChargementService {
 			.map(res => res.json())
 			.catch(error => Observable.throw('Server Error'));
 	}
+
+	updateChargement(guid: string, chargement: Chargement):Observable<Chargement> {
+		return this.http.put(`/chargements/${guid}`, chargement)
+			.map(res => res.json())
+			.catch(error => Observable.throw('Server Error'));
+	}
 }
