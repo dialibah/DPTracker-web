@@ -61,7 +61,7 @@ export class ChargementComponent implements OnInit{
 
 	save(){
 		this.chargement = _extend(this.chargement, this.chargementForm.value);
-		console.log(this.chargement);
+		// console.log(this.chargement);
 		this.chargementService.updateChargement(this.chargement.guid, this.chargement)
 			.subscribe(res => this.chargement = res);
 	}

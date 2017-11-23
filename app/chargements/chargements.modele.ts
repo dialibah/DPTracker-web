@@ -3,8 +3,13 @@
  * for DPTracker
  */
 export interface Colis {
+	dateEnlevement: Date;
+	lieuEnlevement: string;
+	dimension: string;
+	destination: string;
 	guid: string;
 	typeColis: 'BARIL' | 'CARTON' | 'PALETTE';
+	detail: string;
 	createdBy: string;
 	poids: number;
 	destinataire : any;

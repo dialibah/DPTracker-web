@@ -1,3 +1,47 @@
-<div class="container">
-	<h3>Fiche colis</h3>
+<div class="container" *ngIf="colis">
+	<h3>Fiche colis {{colis.guid}}</h3>
+	<form [formGroup]="colisForm" novalidate>
+		<div class="form-group">
+			<label> Type de colis :
+				<select formControlName="typeColis">
+					<option value="BARIL">Baril</option>
+					<option value="CARTON">Carton</option>
+					<option value="PALETTE">Palette</option>
+				</select>
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Date d'enlevement :
+				<input type="date" class="form-control" formControlName="dateEnlevement">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Destination :
+				<input type="text" class="form-control" formControlName="destination">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Poids :
+				<input type="number" class="form-control" formControlName="poids">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Dimension :
+				<input type="text" class="form-control" formControlName="dimension">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Lieu enlèvement :
+				<input type="text" class="form-control" formControlName="lieuEnlevement">
+			</label>
+		</div>
+		<div class="form-group">
+			<label> Détails :
+				<input type="text" class="form-control" formControlName="detail">
+			</label>
+		</div>
+		<button class="btn btn-primary" (click)="save()">
+			<i class="fa fa-save" aria-hidden="true"></i> Enregistrer
+		</button>
+	</form>
 </div>
