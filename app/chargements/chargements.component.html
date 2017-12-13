@@ -1,3 +1,4 @@
+<script src="chargements.component.ts"></script>
 <div class="container">
 	<button class="btn btn-primary pull-right" (click)="createChargement()">
 		<i class="fa fa-plus" aria-hidden="true"></i> Create chargement
@@ -14,12 +15,22 @@
 			</tr>
 		</thead>
 		<tbody class="clickable">
-			<tr *ngFor="let chargement of chargements" (click)="openChargement(chargement.guid)">
+			<tr *ngFor="let chargement of chargements">
 				<td>{{chargement.guid}}</td>
 				<td>{{chargement.createdBy}}</td>
 				<td>{{chargement.statutChargement}}</td>
 				<td>{{chargement.leavingDate}}</td>
 				<td>{{chargement.arrivalDate}}</td>
+				<td>
+					<button class="btn btn-success" (click)="openChargement(chargement.guid)">
+						<i class="fa fa-hand-paper-o" aria-hidden="true"></i> Ouvrir
+					</button>
+				</td>
+				<td>
+					<button class="btn btn-danger" (click)="deleteChargement(chargement.guid)">
+						<i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer
+					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>

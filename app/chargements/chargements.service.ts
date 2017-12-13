@@ -51,4 +51,16 @@ export class ChargementService {
 				   .catch(error => Observable.throw('Server Error'));
 
 	}
+
+	deleteChargement(chargementId: String){
+		return this.http.delete(`/chargements/${chargementId}`)
+				   .map(res => res.json())
+				   .catch(error => Observable.throw('Server Error'));
+	}
+
+	deleteColis(chargementId: string, colisId: String){
+		return this.http.delete(`/chargements/${chargementId}/colis/${colisId}`)
+				   .map(res => res.json())
+				   .catch(error => Observable.throw('Server Error'));
+	}
 }

@@ -50,6 +50,10 @@ export class ChargementComponent implements OnInit{
 		if(guid) this.router.navigate(['/colis/', this.chargement.guid, guid]);
 	}
 
+	deleteColis(guid: String) {
+		this.chargementService.deleteColis(this.chargement.guid, guid).subscribe(cs => this.chargement.colis = cs);
+	}
+
 	private buildForm(chargement: Chargement) {
 		return this.formBuilder.group({
 			description: [chargement.description || '', []],

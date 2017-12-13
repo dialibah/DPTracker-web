@@ -15,7 +15,7 @@ import {Session, SessionService} from "../components/session/session.service";
 })
 export class ChargementsComponent {
 
-	private chargements: Chargement[];
+	chargements: Chargement[];
 	private profile: Session;
 
 	constructor(private router: Router,
@@ -36,4 +36,9 @@ export class ChargementsComponent {
 	openChargement(guid: String):void {
 		if(guid) this.router.navigate(['/chargements/', guid]);
 	}
+
+	deleteChargement(guid: String):void {
+		this.chargementService.deleteChargement(guid).subscribe(cs => this.chargements = cs);
+	}
+
 }

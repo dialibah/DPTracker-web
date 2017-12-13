@@ -20,7 +20,7 @@
 		</div>
 		<div class="form-group">
 			<label> Statut de chargement :
-				<select formControlName="statutChargement">
+				<select class="form-control" formControlName="statutChargement">
 					<option value="CREATED">Créé</option>
 					<option value="OPEN">Ouvert</option>
 					<option value="CLOSED">Fermé</option>
@@ -51,13 +51,23 @@
 		</tr>
 		</thead>
 		<tbody class="clickable">
-		<tr *ngFor="let colis of chargement.colis" (click)="openColis(colis.guid)">
+		<tr *ngFor="let colis of chargement.colis">
 			<td>{{colis.guid}}</td>
 			<td>{{colis.createdBy}}</td>
 			<td>{{colis.typeColis}}</td>
-			<td>{{colis.poids}}</td>
-			<td>{{colis.destinataire}}</td>
-			<td>{{colis.expediteur}}</td>
+			<td>{{colis.poids}} kg</td>
+			<td>{{colis.destinataire.nom}}</td>
+			<td>{{colis.expediteur.nom}}</td>
+			<td>
+				<button class="btn btn-success" (click)="openColis(colis.guid)">
+					<i class="fa fa-hand-paper-o" aria-hidden="true"></i> Ouvrir
+				</button>
+			</td>
+			<td>
+				<button class="btn btn-danger" (click)="deleteColis(colis.guid)">
+					<i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer
+				</button>
+			</td>
 		</tr>
 		</tbody>
 	</table>
