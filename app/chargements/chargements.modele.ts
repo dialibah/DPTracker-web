@@ -1,3 +1,7 @@
+export interface Contact {
+	nom, prenom, adresse, telephone, email:string;
+}
+
 /**
  * Created by nureynisow on 17/09/2017.
  * for DPTracker
@@ -12,8 +16,8 @@ export interface Colis {
 	detail: string;
 	createdBy: string;
 	poids: number;
-	destinataire : any;
-	expediteur: any;
+	destinataire : Contact | any;
+	expediteur: Contact | any;
 }
 
 export interface Chargement {

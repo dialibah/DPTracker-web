@@ -1,45 +1,99 @@
-<div class="container" *ngIf="colis">
+<div class="container text-center" *ngIf="colis && colisForm">
 	<h3>Fiche colis {{colis.guid}}</h3>
 	<form [formGroup]="colisForm" novalidate>
-		<div class="form-group">
-			<label> Type de colis :
-				<select formControlName="typeColis">
-					<option value="BARIL">Baril</option>
-					<option value="CARTON">Carton</option>
-					<option value="PALETTE">Palette</option>
-				</select>
-			</label>
+		<div class="col-md-offset-2">
+			<div class="form-group">
+				<label> Type de colis :
+					<select class="form-control" formControlName="typeColis">
+						<option value="BARIL">Baril</option>
+						<option value="CARTON">Carton</option>
+						<option value="PALETTE">Palette</option>
+					</select>
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Date d'enlevement :
+					<input type="date" class="form-control" formControlName="dateEnlevement">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Poids :
+					<input type="number" class="form-control" formControlName="poids">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Dimension :
+					<input type="text" class="form-control" formControlName="dimension">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Lieu enlèvement :
+					<input type="text" class="form-control" formControlName="lieuEnlevement">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Détails :
+					<input type="text" class="form-control" formControlName="detail">
+				</label>
+			</div>
 		</div>
-		<div class="form-group">
-			<label> Date d'enlevement :
-				<input type="date" class="form-control" formControlName="dateEnlevement">
-			</label>
-		</div>
-		<div class="form-group">
-			<label> Destination :
-				<input type="text" class="form-control" formControlName="destination">
-			</label>
-		</div>
-		<div class="form-group">
-			<label> Poids :
-				<input type="number" class="form-control" formControlName="poids">
-			</label>
-		</div>
-		<div class="form-group">
-			<label> Dimension :
-				<input type="text" class="form-control" formControlName="dimension">
-			</label>
-		</div>
-		<div class="form-group">
-			<label> Lieu enlèvement :
-				<input type="text" class="form-control" formControlName="lieuEnlevement">
-			</label>
-		</div>
-		<div class="form-group">
-			<label> Détails :
-				<input type="text" class="form-control" formControlName="detail">
-			</label>
-		</div>
+		<fieldset class="form-group col-xs-6" formGroupName="expediteur">
+			<legend>Expediteur</legend>
+			<div class="form-group">
+				<label> Nom :
+					<input type="text" class="form-control" formControlName="nom">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Prénom :
+					<input type="text" class="form-control" formControlName="prenom">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Adresse :
+					<input type="text" class="form-control" formControlName="adresse">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Telephone :
+					<input type="tel" class="form-control" formControlName="telephone">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Email :
+					<input type="email" class="form-control" formControlName="email">
+				</label>
+			</div>
+		</fieldset>
+		<fieldset class="form-group col-xs-6" formGroupName="destinataire">
+			<legend>Destinataire</legend>
+			<div class="form-group">
+				<label> Nom :
+					<input type="text" class="form-control" formControlName="nom">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Prénom :
+					<input type="text" class="form-control" formControlName="prenom">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Adresse :
+					<input type="text" class="form-control" formControlName="adresse">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Telephone :
+					<input type="tel" class="form-control" formControlName="telephone">
+				</label>
+			</div>
+			<div class="form-group">
+				<label> Email :
+					<input type="email" class="form-control" formControlName="email">
+				</label>
+			</div>
+		</fieldset>
+		<!--<pre>{{colisForm.value | json}}</pre>-->
 		<button class="btn btn-primary" (click)="save()">
 			<i class="fa fa-save" aria-hidden="true"></i> Enregistrer
 		</button>

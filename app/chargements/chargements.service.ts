@@ -44,4 +44,11 @@ export class ChargementService {
 			.map(res => res.json())
 			.catch(error => Observable.throw('Server Error'));
 	}
+
+	updateColis(chargementId: string, guid: string, colis: Colis):Observable<Colis>{
+		return this.http.put(`/chargements/${chargementId}/colis/${guid}`, colis)
+				   .map(res => res.json())
+				   .catch(error => Observable.throw('Server Error'));
+
+	}
 }
