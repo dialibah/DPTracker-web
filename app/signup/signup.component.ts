@@ -23,10 +23,10 @@ export class SignupComponent {
 		private sessionService: SessionService
 	) {
 		this.signupForm = this.fb.group({
-			'email': ['', []],
+			'email': ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
 			'username': ['', []],
-			'password': ['', []],
-			'passwordConfirm': ['', []]
+			'password': ['', [Validators.required, Validators.minLength(6)]],
+			'passwordConfirm': ['', [Validators.required, Validators.minLength(6)]]
 		});
 	}
 

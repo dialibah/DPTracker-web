@@ -7,6 +7,8 @@
 				<div class="col-xs-12">
 					<input type="text" name="email" id="email" class="form-control" formControlName="email"
 						   placeholder="Email" />
+					<div *ngIf="signupForm.controls['email'].dirty && signupForm.controls['email'].errors"
+									class="text-red1-xs">Email						invalide</div>
 				</div>
 			</div>
 
@@ -31,24 +33,6 @@
 				</div>
 			</div>
 
-			<!--<div class="form-group">-->
-				<!--<div class="col-xs-12">-->
-					<!--<input type="text" name="email" id="email" class="form-control" formControlName="email"-->
-						   <!--placeholder="email" />-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="form-group">-->
-				<!--<div class="col-xs-12">-->
-					<!--<input type="password" name="password" id="password" class="form-control" formControlName="password"-->
-						   <!--placeholder="Mot de passe" />-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="form-group">-->
-				<!--<div class="col-xs-12">-->
-					<!--<input type="password" name="password" id="passwordConfirm" class="form-control" formControlName="password"-->
-						   <!--placeholder="Mot de passe" />-->
-				<!--</div>-->
-			<!--</div>-->
 			<div class="form-group">
 				<div class="col-xs-12">
 					<button type="submit" class="btn btn-primary btn-block" [disabled]="!signupForm.valid">
