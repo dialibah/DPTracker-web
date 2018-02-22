@@ -31,14 +31,17 @@ export class SignupComponent {
 	}
 
 	onSubmit(){
+
 		const signupData = this.signupForm.value;
 		if(signupData.password === signupData.passwordConfirm && _unset(signupData, "passwordConfirm")) {
 			this.sessionService.createUser(signupData)
 				.subscribe(registeredUser => {
 					alert("OK");
+				}, err => {
+					alert("Ce pseudo existe déjà");
 				});
 		}else{
-			alert('Not same pwd');
+			alert('Vérifiez les mots de passe');
 		}
 	}
 

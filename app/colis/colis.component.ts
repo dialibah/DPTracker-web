@@ -60,6 +60,9 @@ export class ColisComponent implements OnInit{
 	}
 
 	save(){
-		this.chargementService.updateColis(this.chargementId, this.colis.guid, this.colisForm.value).subscribe();
+		this.chargementService.updateColis(this.chargementId, this.colis.guid, this.colisForm.value).subscribe(res=>{
+			this.router.navigate(['chargements', this.chargementId]);
+			alert("Enregistré")
+		});
 	}
 }

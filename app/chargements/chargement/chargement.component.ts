@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ChargementService} from "../chargements.service";
 import {Session, SessionService} from "../../components/session/session.service";
 import {Chargement} from "../chargements.modele";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 
 import _extend = require('lodash/extend');
 
@@ -20,6 +20,7 @@ export class ChargementComponent implements OnInit{
 	private profile: Session;
 	chargement: Chargement;
 	chargementForm: FormGroup;
+	createMode: boolean;
 
 	constructor(private routerService:ActivatedRoute,
 				private router: Router,
@@ -30,11 +31,17 @@ export class ChargementComponent implements OnInit{
 
 	ngOnInit(): void {
 		this.session.session$.subscribe(s => this.profile = s);
+		this.routerService.queryParams.subscribe(p => {
+			this.createMode = p['step'] === 'create';
+		});
 		this.routerService.params.subscribe(p => {
 			this.chargementService.getChargement(p['id'])
 				.subscribe(res => {
 					this.chargement = res;
 					this.chargementForm = this.buildForm(this.chargement);
+					if(this.chargement.statutChargement === 'CLOSED' || this.chargement.statutChargement === 'ARCHIVED'){
+						this.chargementForm.disable();
+					}
 				}, e => this.session.logout());
 		});
 	}
@@ -51,22 +58,35 @@ export class ChargementComponent implements OnInit{
 	}
 
 	deleteColis(guid: String) {
-		this.chargementService.deleteColis(this.chargement.guid, guid).subscribe(cs => this.chargement.colis = cs);
+		this.chargementService.deleteColis(this.chargement.guid, guid).subscribe(cs => {
+			this.chargement.colis = cs;
+			alert('Supprimé');
+		});
 	}
 
 	private buildForm(chargement: Chargement) {
 		return this.formBuilder.group({
-			description: [chargement.description || '', []],
-			leavingDate: [chargement.leavingDate || '', []],
-			arrivalDate: [chargement.arrivalDate || '', []],
+			description: [chargement.description || '', [Validators.required]],
+			leavingDate: [chargement.leavingDate || '', [Validators.required]],
+			arrivalDate: [chargement.arrivalDate || '', [Validators.required]],
 			statutChargement: [chargement.statutChargement || '', []]
 		});
 	}
 
 	save(){
+		if(this.chargementForm.invalid)
+			return alert('Données invalides - Dates et description obligatoire');
 		this.chargement = _extend(this.chargement, this.chargementForm.value);
 		// console.log(this.chargement);
 		this.chargementService.updateChargement(this.chargement.guid, this.chargement)
-			.subscribe(res => this.chargement = res);
+			.subscribe(res => {
+				this.chargement = res;
+				alert("Enregistré");
+				if(this.chargement.statutChargement === 'CLOSED' || this.chargement.statutChargement === 'ARCHIVED'){
+					this.router.navigate(['/chargements']);
+				}
+			},err=>{
+				alert(err)
+			});
 	}
 }

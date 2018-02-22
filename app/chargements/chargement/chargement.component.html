@@ -23,10 +23,12 @@
 				<select class="form-control" formControlName="statutChargement">
 					<option value="CREATED">Créé</option>
 					<option value="OPEN">Ouvert</option>
-					<option value="CLOSED">Fermé</option>
-					<option value="UNDER_WAY">En route</option>
+					<ng-container *ngIf="!createMode">
+					<option value="CLOSED">Cloturé</option>
+					<option value="UNDER_WAY">En cours</option>
 					<option value="ARRIVED">Arrivé</option>
 					<option value="ARCHIVED">Archivé</option>
+					</ng-container>
 				</select>
 			</label>
 		</div>

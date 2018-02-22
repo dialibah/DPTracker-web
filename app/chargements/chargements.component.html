@@ -1,7 +1,7 @@
 <script src="chargements.component.ts"></script>
 <div class="container">
 	<button class="btn btn-primary pull-right" (click)="createChargement()">
-		<i class="fa fa-plus" aria-hidden="true"></i> Create chargement
+		<i class="fa fa-plus" aria-hidden="true"></i> Creer un chargement
 	</button>
 
 	<table *ngIf="chargements" class="table table-striped table-hover margin-top-sm-xs">
@@ -18,7 +18,7 @@
 			<tr *ngFor="let chargement of chargements">
 				<td>{{chargement.guid}}</td>
 				<td>{{chargement.createdBy}}</td>
-				<td>{{chargement.statutChargement}}</td>
+				<td>{{getStatus(chargement.statutChargement)}}</td>
 				<td>{{chargement.leavingDate}}</td>
 				<td>{{chargement.arrivalDate}}</td>
 				<td>
